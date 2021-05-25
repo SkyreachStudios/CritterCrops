@@ -12,17 +12,6 @@ public class Item : MonoBehaviour
     public Animator itemAnim;
     public int cost;
 
-    public Item(string itemName, string itemType, int qty, Sprite itemImage)
-    {
-        this.itemName = itemName;
-        this.itemType = itemType;
-        this.qty = qty;
-        this.itemImage = itemImage;
-    }
-
-
-
-
     // Start is called before the first frame update
     void Start()
     {

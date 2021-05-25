@@ -29,6 +29,9 @@ public class interaction : MonoBehaviour
     public GameObject[] critter;
 
     public List<GameObject> openMenus;
+    public QuestLogSystem questLog;
+
+
 
     private void Awake()
     {
@@ -94,6 +97,7 @@ public class interaction : MonoBehaviour
 
                         
                         overlappedObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        this.questLog.checkQuests("Dig");
 
                     }
                 }
@@ -146,6 +150,9 @@ public class interaction : MonoBehaviour
                                 alertRender.color = new Color(1, 1, 1, 0);
                                 alertAnim.SetBool("canPlant?", false);
 
+                                //if contains a quest who wants to plant this call planted 
+                                this.questLog.checkQuests("Pumpkitty");
+                                this.questLog.checkQuests("Plant");
                             }
 
                             //plant batberry 
@@ -179,9 +186,14 @@ public class interaction : MonoBehaviour
 
                                 data.animator.SetBool("isSprout", true);
 
+
+
                                 //update UI
                                 alertRender.color = new Color(1, 1, 1, 0);
                                 alertAnim.SetBool("canPlant?", false);
+
+                                this.questLog.checkQuests("Batberry");
+                                this.questLog.checkQuests("Plant");
 
                             }
 
@@ -216,6 +228,8 @@ public class interaction : MonoBehaviour
                                 //update UI
                                 alertRender.color = new Color(1, 1, 1, 0);
                                 alertAnim.SetBool("canPlant?", false);
+                                this.questLog.checkQuests("Ghoulic");
+                                this.questLog.checkQuests("Plant");
 
                             }
 
@@ -250,6 +264,8 @@ public class interaction : MonoBehaviour
                                 //update UI
                                 alertRender.color = new Color(1, 1, 1, 0);
                                 alertAnim.SetBool("canPlant?", false);
+                                this.questLog.checkQuests("Mumshroom");
+                                this.questLog.checkQuests("Plant");
 
                             }
 
@@ -284,6 +300,8 @@ public class interaction : MonoBehaviour
                                 //update UI
                                 alertRender.color = new Color(1, 1, 1, 0);
                                 alertAnim.SetBool("canPlant?", false);
+                                this.questLog.checkQuests("Strawboory");
+                                this.questLog.checkQuests("Plant");
 
                             }
 
@@ -318,6 +336,8 @@ public class interaction : MonoBehaviour
                                 //update UI
                                 alertRender.color = new Color(1, 1, 1, 0);
                                 alertAnim.SetBool("canPlant?", false);
+                                this.questLog.checkQuests("Weretermelon");
+                                this.questLog.checkQuests("Plant");
 
                             }
 
@@ -370,6 +390,8 @@ public class interaction : MonoBehaviour
                         Destroy(data.GetComponent<Animator>());
                         Destroy(data.GetComponent<Plant>());
 
+                        this.questLog.checkQuests("Harvest");
+
 
 
                     }
@@ -387,16 +409,10 @@ public class interaction : MonoBehaviour
                 if (InteractInput())
                 {
 
-                    Debug.Log("-------------------Interacting with element!!!----------------------\nelement data: \n" + "Item Name:" +itemToAdd.itemName
-+ "\nType:" + itemToAdd.itemType
-+ "\nImage:" + itemToAdd.itemImage.ToString()
-+ "\nAnim:" + itemToAdd.itemAnim.ToString()
-+ "\nQTY:" + itemToAdd.qty);
                     GetComponent<Audio>().PlayAudio(7, 1);
                     inventory.addItem(overlappedObject);
                     inventory.updateItemsBar();
-                    
-                   
+                    this.questLog.checkQuests("Collect");
                 }
                
             }
